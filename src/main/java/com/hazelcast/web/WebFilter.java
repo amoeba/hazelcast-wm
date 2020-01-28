@@ -280,6 +280,10 @@ public class WebFilter implements Filter {
         if (config.getCookieDomain() != null) {
             sessionCookie.setDomain(config.getCookieDomain());
         }
+
+        // Hack SameSite value into cookie always
+        sessionCookie.setValue(sessionCookie.getValue() + "; SameSite=None");
+
         if (config.isCookieHttpOnly()) {
             try {
                 sessionCookie.setHttpOnly(true);

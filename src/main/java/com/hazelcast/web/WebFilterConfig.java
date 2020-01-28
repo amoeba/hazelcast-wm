@@ -58,6 +58,7 @@ public final class WebFilterConfig {
     private static final String COOKIE_NAME = "cookie-name";
     private static final String COOKIE_DOMAIN = "cookie-domain";
     private static final String COOKIE_SECURE = "cookie-secure";
+    private static final String COOKIE_SAMESITE = "cookie-samesite";
     private static final String COOKIE_HTTP_ONLY = "cookie-http-only";
     private static final String COOKIE_PATH = "cookie-path";
     private static final String COOKIE_MAX_AGE = "cookie-max-age";
@@ -76,6 +77,7 @@ public final class WebFilterConfig {
     private String cookieName;
     private String cookieDomain;
     private boolean cookieSecure;
+    private String cookieSameSite;
     private boolean cookieHttpOnly;
     private String cookiePath;
     private int cookieMaxAge;
@@ -111,6 +113,7 @@ public final class WebFilterConfig {
         String cookieName = getString(filterConfig, properties, COOKIE_NAME, "hazelcast.sessionId");
         String cookieDomain = getString(filterConfig, properties, COOKIE_DOMAIN, null);
         boolean cookieSecure = getBoolean(filterConfig, properties, COOKIE_SECURE, false);
+        String cookieSameSite = getString(filterConfig, properties, COOKIE_SAMESITE, "None");
         boolean cookieHttpOnly = getBoolean(filterConfig, properties, COOKIE_HTTP_ONLY, false);
         String cookiePath = getString(filterConfig, properties, COOKIE_PATH, null);
         int cookieMaxAge = getInt(filterConfig, properties, COOKIE_MAX_AGE, -1);
@@ -130,6 +133,7 @@ public final class WebFilterConfig {
         wfc.cookieName = cookieName;
         wfc.cookieDomain = cookieDomain;
         wfc.cookieSecure = cookieSecure;
+        wfc.cookieSameSite = cookieSameSite;
         wfc.cookieHttpOnly = cookieHttpOnly;
         wfc.cookiePath = cookiePath;
         wfc.cookieMaxAge = cookieMaxAge;
@@ -186,6 +190,10 @@ public final class WebFilterConfig {
 
     public boolean isCookieSecure() {
         return cookieSecure;
+    }
+
+    public String getCookieSameSite() {
+        return cookieSameSite;
     }
 
     public boolean isCookieHttpOnly() {
