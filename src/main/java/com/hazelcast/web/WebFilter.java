@@ -282,7 +282,7 @@ public class WebFilter implements Filter {
         }
 
         // Hack SameSite value into cookie always
-        sessionCookie.setValue(sessionCookie.getValue() + "; SameSite=None");
+        sessionCookie.setValue(sessionCookie.getValue() + "; SameSite=" + config.getCookieSameSite());
 
         if (config.isCookieHttpOnly()) {
             try {
